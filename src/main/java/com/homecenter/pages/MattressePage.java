@@ -1,14 +1,21 @@
 package com.homecenter.pages;
-import static com.base.homecenter.base_class.*;
+import static com.base.homecentre.Base_Test.*;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.utils.homecenter.Wait_utils;
+
 public class MattressePage {
+	
+	private static final Logger log=LogManager.getLogger(MattressePage.class);
 
 	@FindBy(css="div[id=\"plp-list\"]>div>div>div>div:nth-child(3)>a[aria-label=\"Restomax Elite 6+2 Inches Pocket Spring Memory Foam King Mattress with Box Top, 180x195cm - Grey\"]")
 	public WebElement firstProduct;
@@ -55,18 +62,34 @@ public class MattressePage {
 	}
 	
 	public int addToBasketInitialCount() {
-		System.out.println(basketIcon.getText());
-		String start=basketIcon.getAttribute("aria-label");
-	//	System.out.println(start);
-		String r=start.replaceAll("\\D+","");
-		int f=r.isEmpty()?0:Integer.parseInt(r);
-	//	System.out.println(f+" StartCount");
-		return f;
+//		log.info(basketIcon.getText());
+//		String start=basketIcon.getAttribute("aria-label");
+//		String r=start.replaceAll("\\D+","");
+//		int f=r.isEmpty()?0:Integer.parseInt(r);
+//		return f;
+		String end=basketIcon.getAttribute("aria-label");
+		//log.info(end);
+		String p=end.replaceAll("[^0-12]","").trim();
+		//int q=Integer.parseInt(p);
+		
+		
+		int initialCount = 0;
+        if (!p.isEmpty()) {
+            try {
+                initialCount = Integer.parseInt(p);
+            } catch (NumberFormatException e) {
+                log.info("⚠️ Could not parse basket count: " + end);
+            }
+		
+        }
+		
+	//	log.info(updatedCount+" Updated Count");
+		return initialCount;
 	}
 	
 	public int addToBasketPostCount() {
 		String end=basketIcon.getAttribute("aria-label");
-		//System.out.println(end);
+		//log.info(end);
 		String p=end.replaceAll("[^0-12]","").trim();
 		//int q=Integer.parseInt(p);
 		
@@ -76,13 +99,30 @@ public class MattressePage {
             try {
                 updatedCount = Integer.parseInt(p);
             } catch (NumberFormatException e) {
-                System.out.println("⚠️ Could not parse basket count: " + end);
+                log.info("⚠️ Could not parse basket count: " + end);
             }
 		
         }
 		
-	//	System.out.println(updatedCount+" Updated Count");
+	//	log.info(updatedCount+" Updated Count");
 		return updatedCount;
+	}
+	
+	public int kingMattressesProductsClick() {
+		List<WebElement>listOfProducts=driver.findElements(kingMattresProducts);	
+		int add=0;
+		for (WebElement list : listOfProducts) {
+			// WebDriverWait wai = new WebDriverWait(driver, Duration.ofSeconds(10));
+			//    WebElement produc=wai.until(ExpectedConditions.visibilityOf(list));
+			Wait_utils.waitForVisibility(list, 20);
+			    Actions action=new Actions(driver);
+			    action.moveToElement(list).perform();
+			    Wait_utils.waitForClickability(list, 10);
+			    list.click();
+			    add++;	
+		}
+		log.info("Total product Clicable: "+add);
+		return add;
 	}
 	
 	

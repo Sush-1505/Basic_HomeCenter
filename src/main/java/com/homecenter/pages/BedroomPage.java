@@ -1,15 +1,12 @@
 package com.homecenter.pages;
-
-import static com.base.homecenter.base_class.*;
-
-import java.util.List;
+import static com.base.homecentre.Base_Test.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.utils.homecenter.wait_utils;
+import com.utils.homecenter.Wait_utils;
 
 public class BedroomPage {
 
@@ -36,7 +33,7 @@ public class BedroomPage {
 	}
 	
 	public void hoverOnBedroom() {
-		wait_utils.waitForVisibility(bedroom, 10);
+		Wait_utils.waitForVisibility(bedroom, 10);
 		hoverOnElement(bedroom);
 	}
 	

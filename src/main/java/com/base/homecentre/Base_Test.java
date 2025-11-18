@@ -1,8 +1,16 @@
-package com.base.homecenter;
+package com.base.homecentre;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-
+import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,23 +21,25 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public class base_class {
+
+public class Base_Test {
 
 	public static RemoteWebDriver driver;
+	private static final Logger log=LogManager.getLogger(Base_Test.class);
 	
 	public static void openBrowser(String browsername) {
 		
 		if(browsername.equalsIgnoreCase("chrome")) {
 			driver=new ChromeDriver();
-			System.out.println("Driver is opened");
+			log.info("Driver is opened");
 		}
 		else if(browsername.equalsIgnoreCase("firefox")) {
 			driver=new FirefoxDriver();
-			System.out.println("Driver is opened");
+			log.info("Driver is opened");
 		}
 		else if(browsername.equalsIgnoreCase("Safari")) {
 			driver=new SafariDriver();
-			System.out.println("Driver is opened");
+			log.info("Driver is opened");
 		}
 		else {
 			throw new Error("Invalid Browser Name "+browsername);
@@ -62,7 +72,7 @@ public class base_class {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -90,17 +100,16 @@ public class base_class {
 	public static int getListSize(By element) {
 		List<WebElement>size=driver.findElements(element);
 		int sizeCount=size.size();
-		System.out.println(sizeCount);
+		log.info(sizeCount);
 		return sizeCount;
 	}
 	
 	public static int getListCountInInteger(WebElement element) {
 		String listCount=element.getText();
 		String count=listCount.substring(2,5).trim();
-		System.out.println(count);
+		log.info(count);
 		int countListNumber=Integer.parseInt(count);
-		System.out.println();
-		System.out.println(countListNumber);
+		log.info(countListNumber);
 		return countListNumber;
 	}
 	
@@ -110,11 +119,27 @@ public class base_class {
 		
     for (WebElement list : lists) {
 			
-			System.out.println(list.getText());
+			log.info(list.getText());
 		}
 	}
 	
+	public static void captureScreenshot(String fileName) {
+		TakesScreenshot screenShot=(TakesScreenshot) driver;
+		File sourceFile=screenShot.getScreenshotAs(OutputType.FILE);
+		
+		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+		File destFile=new File("./Screenshots/"+timestamp+fileName);
+		try {
+			FileUtils.copyFile(sourceFile, destFile);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		log.info("Screenshot saved Sussecfully");
+	}
 	
 	
-	
-}
+		}
+
+

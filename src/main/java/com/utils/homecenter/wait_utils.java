@@ -1,12 +1,13 @@
 package com.utils.homecenter;
-import static com.base.homecenter.base_class.*;
+import static com.base.homecentre.Base_Test.*;
+
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class wait_utils {
+public class Wait_utils {
 
 	public static void waitForVisibility(WebElement element, int timeoutInSeconds) {
         new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds))
