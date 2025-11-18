@@ -1,14 +1,21 @@
 package com.homecenter.pages;
-import static com.base.homecenter.base_class.*;
+import static com.base.homecentre.Base_Test.*;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class BasketCartPage {
 
-	@FindBy(css="//span[text()=\"Checkout now\"]")
-	public WebElement basketCart;
+	@FindBy(xpath="//span[text()=\"Checkout now\"]")
+	public WebElement checkoutNow;
+	
+	public By checkOutNOw=By.xpath("//span[text()=\"Checkout now\"]");
+	
+	@FindBy(css="button[id=\"signup-form-submit\"]>span")
+	public WebElement continueButton;
 	
 	public BasketCartPage() {
 		PageFactory.initElements(driver,this);
@@ -16,7 +23,7 @@ public class BasketCartPage {
 
 
 public boolean isDisplayCheckOut() {
-	boolean display=basketCart.isDisplayed();
+	boolean display=checkoutNow.isDisplayed();
 	return display;
 }
 }

@@ -1,17 +1,12 @@
 package test_cases_package;
-import static com.utils.homecenter.wait_utils.*;
-
 import java.time.Duration;
 import java.util.List;
-
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,7 +16,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.utils.homecenter.wait_utils;
+import com.utils.homecenter.Wait_utils;
 
 public class only_testcases {
 
@@ -88,7 +83,7 @@ public class only_testcases {
 		Thread.sleep(2000);
 		
 		WebElement kingMattresses=driver.findElement(By.cssSelector("div[id=\"Bedroom-category-item-2\"]>div+div>a[href=\"/in/en/c/bedroom-mattresses-kingmattresses\"]"));
-		  wait_utils.waitForClickability(kingMattresses, 20);
+		  Wait_utils.waitForClickability(kingMattresses, 20);
 		  kingMattresses.click();
 		
           Assert.assertTrue(driver.getCurrentUrl().toLowerCase().contains("/bedroom-mattresses-kingmattresses"),
@@ -104,7 +99,7 @@ public class only_testcases {
 		Thread.sleep(2000);
 		
 		WebElement kingMattresses=driver.findElement(By.cssSelector("div[id=\"Bedroom-category-item-2\"]>div+div>a[href=\"/in/en/c/bedroom-mattresses-kingmattresses\"]"));
-		  wait_utils.waitForClickability(kingMattresses, 20);
+		  Wait_utils.waitForClickability(kingMattresses, 20);
 		  kingMattresses.click();
 		  Thread.sleep(2000);
 		  List<WebElement> productList = driver.findElements(By.cssSelector("div[id=\"plp-list\"]>div>div"));
@@ -161,7 +156,7 @@ public class only_testcases {
 		act.moveToElement(bedroom).perform();
 		Thread.sleep(2000); 
 		WebElement kingMattresses=driver.findElement(By.cssSelector("div[id=\"Bedroom-category-item-2\"]>div+div>a[href=\"/in/en/c/bedroom-mattresses-kingmattresses\"]"));
-		wait_utils.waitForClickability(kingMattresses, 20);
+		Wait_utils.waitForClickability(kingMattresses, 20);
 		kingMattresses.click();
 		Thread.sleep(2000);
 	   // WebElement firstProduct=driver.findElement(By.cssSelector("div[id=\"plp-list\"]>div>div>div>div:nth-child(3)>a[aria-label=\"Restomax Elite 6+2 Inches Pocket Spring Memory Foam King Mattress with Box Top, 180x195cm - Grey\"]"));
