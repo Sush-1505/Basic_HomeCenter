@@ -1,7 +1,11 @@
 package com.homecenter.test_cases;
 
+import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,6 +14,7 @@ import com.base.homecentre.Base_Test;
 import com.homecenter.pages.BasketCartPage;
 import com.homecenter.pages.BedroomPage;
 import com.homecenter.pages.MattressePage;
+import com.homecenter.utils.Data_Provider;
 import com.utils.homecenter.Wait_utils;
 
 public class BedroomKingMatressesTestcases extends Base_Test {
@@ -213,5 +218,206 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		Assert.assertTrue(cart.continueButton.isDisplayed(), "Continue Button Is Not Visible");
 		log.info("Continue Button is visible");
 
+	}
+	
+	@Test
+	public void verifyPincodes() throws InterruptedException {
+		BedroomPage bed = new BedroomPage();
+		bed.hoverOnBedroom();
+		MattressePage mattres = new MattressePage();
+		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
+		mattres.kingMatrres.click();
+		Actions action = new Actions(driver);
+
+		Wait_utils.visibilityOfElementLocated(mattres.firstProduc, 20);
+		action.moveToElement(mattres.firstProduct).perform();
+		Wait_utils.waitForClickability(mattres.addToBasketButton, 20);
+		mattres.addToBasketButton.click();
+
+		Wait_utils.waitForClickability(mattres.cartIcon, 20);
+		mattres.cartIcon.click();
+		
+		Thread.sleep(2000);
+		
+		WebElement pincode=driver.findElement(By.cssSelector("input[id=\"pincode-field\"]"));
+		pincode.sendKeys("445001");
+		
+		Thread.sleep(2000);
+		
+		WebElement check=driver.findElement(By.xpath("//span[text()='Check']"));		
+		Thread.sleep(2000);
+		check.click();
+		
+		Thread.sleep(2000);
+		
+		WebElement msg=driver.findElement(By.cssSelector("div[id=\"root-desk-top-right-inner\"]>div>div>p+p"));
+		System.out.println(msg.getText());
+		
+		
+	//	driver.navigate().refresh();
+		
+		Thread.sleep(2000);
+		
+		WebElement change=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div:nth-child(3)"));
+		Wait_utils.waitForVisibility(change, 10);
+		
+		change.click();
+		
+		Thread.sleep(1000);
+		
+		WebElement cross=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div+div>span"));
+		cross.click();
+		
+		driver.navigate().refresh();
+		
+		Thread.sleep(2000);
+		WebElement pinnn=driver.findElement(By.cssSelector("input[id=\"pincode-field\"]"));
+		try {
+		Wait_utils.waitForVisibility(pinnn, 10);
+		pinnn.sendKeys("400017");
+		}
+		
+		catch(Exception e){
+			System.out.println("error"+e.getMessage());
+		}
+		Thread.sleep(2000);
+		
+		Wait_utils.waitForVisibility(check, 10);
+		
+		check.click();
+		
+		//driver.navigate().refresh();
+		
+		Thread.sleep(2000);
+		
+		Wait_utils.waitForVisibility(msg, 10);
+		
+		System.out.println(msg.getText());
+		
+		Thread.sleep(2000);
+			
+	}
+	
+//	@Test(dataProvider = "Pincodes Data" , dataProviderClass = Data_Provider.class)
+	public void verifyPincode(int pincod) throws InterruptedException, IOException {
+		BedroomPage bed = new BedroomPage();
+		bed.hoverOnBedroom();
+		MattressePage mattres = new MattressePage();
+		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
+		mattres.kingMatrres.click();
+		Actions action = new Actions(driver);
+
+		Wait_utils.visibilityOfElementLocated(mattres.firstProduc, 20);
+		action.moveToElement(mattres.firstProduct).perform();
+		Wait_utils.waitForClickability(mattres.addToBasketButton, 20);
+		mattres.addToBasketButton.click();
+
+		Wait_utils.waitForClickability(mattres.cartIcon, 20);
+		mattres.cartIcon.click();
+		
+		Thread.sleep(2000);
+		
+		WebElement pincode=driver.findElement(By.cssSelector("input[id=\"pincode-field\"]"));
+		pincode.sendKeys("445001");
+		
+		Thread.sleep(2000);
+		
+		WebElement check=driver.findElement(By.xpath("//span[text()='Check']"));		
+		Thread.sleep(2000);
+		
+		WebElement msg=driver.findElement(By.cssSelector("div[id=\"root-desk-top-right-inner\"]>div>div>p+p"));
+		System.out.println(msg.getText());
+		
+		Thread.sleep(2000);
+
+		
+		Data_Provider d=new Data_Provider();
+		
+		for(int i=1;i<=d.lastRowNumber();i++) {
+			
+//			String pp=pincod.toString();
+//			
+//			 int a=Integer.parseInt(pp);
+			Thread.sleep(2000);
+			
+			WebElement change=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div:nth-child(3)"));
+			Wait_utils.waitForVisibility(change, 10);
+			
+			change.click();
+			
+			Thread.sleep(1000);
+			
+			WebElement cross=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div+div>span"));
+			cross.click();
+			
+			Thread.sleep(2000);
+			
+			pincode.sendKeys(String.valueOf(pincod));
+					
+			Thread.sleep(2000);
+			
+			Wait_utils.waitForVisibility(check, 10);
+			
+			check.click();
+			
+			//driver.navigate().refresh();
+			
+			Thread.sleep(2000);
+			
+			Wait_utils.waitForVisibility(msg, 10);
+			
+			System.out.println(msg.getText());
+			
+			Thread.sleep(2000);
+
+		}
+		
+		
+//		WebElement pincode=driver.findElement(By.cssSelector("input[id=\"pincode-field\"]"));
+//		pincode.sendKeys("445001");
+//		
+//		Thread.sleep(2000);
+//		
+//		WebElement check=driver.findElement(By.xpath("//span[text()='Check']"));		
+//		Thread.sleep(2000);
+//		
+//		WebElement msg=driver.findElement(By.cssSelector("div[id=\"root-desk-top-right-inner\"]>div>div>p+p"));
+//		System.out.println(msg.getText());
+//		
+//		
+//	//	driver.navigate().refresh();
+//		
+//		Thread.sleep(2000);
+//		
+//		WebElement change=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div:nth-child(3)"));
+//		Wait_utils.waitForVisibility(change, 10);
+//		
+//		change.click();
+//		
+//		Thread.sleep(1000);
+//		
+//		WebElement cross=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div+div>span"));
+//		cross.click();
+//		
+//		Thread.sleep(2000);
+//		
+//		pincode.sendKeys("400017");
+//				
+//		Thread.sleep(2000);
+//		
+//		Wait_utils.waitForVisibility(check, 10);
+//		
+//		check.click();
+//		
+//		//driver.navigate().refresh();
+//		
+//		Thread.sleep(2000);
+//		
+//		Wait_utils.waitForVisibility(msg, 10);
+//		
+//		System.out.println(msg.getText());
+//		
+//		Thread.sleep(2000);
+		
 	}
 }
