@@ -11,38 +11,66 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+
+import com.utils.homecenter.Wait_utils;
 
 
 public class Base_Test {
 
-	public static RemoteWebDriver driver;
+	public static RemoteWebDriver driver;	
 	private static final Logger log=LogManager.getLogger(Base_Test.class);
 	
-	public static void openBrowser(String browsername) {
+	@Parameters("Browser Name")
+//	@BeforeMethod
+	public static void openBrowser(String browserName) {
 		
-		if(browsername.equalsIgnoreCase("chrome")) {
-			driver=new ChromeDriver();
-			log.info("Driver is opened");
+		if(browserName.equalsIgnoreCase("chrome")) {
+			ChromeOptions options=new ChromeOptions();
+			options.addArguments("--disable-notifications");
+		    driver=new ChromeDriver(options);
+		    driver.manage().window().maximize();
+			driver.get("https://www.homecentre.in/in/en/");
+//			try {
+//				Thread.sleep(4000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			WebElement element=driver.findElement(By.cssSelector("button[id=\"moe-dontallow_button\"]"));
+//			
+//			element.click();
 		}
-		else if(browsername.equalsIgnoreCase("firefox")) {
-			driver=new FirefoxDriver();
-			log.info("Driver is opened");
+		else if(browserName.equalsIgnoreCase("firefox")) {
+			//FirefoxOptions options=new FirefoxOptions();
+			//options.addArguments("--disable-notifications");
+		    driver=new FirefoxDriver();
+		    driver.manage().window().maximize();
+			driver.get("https://www.homecentre.in/in/en/");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			WebElement element=driver.findElement(By.cssSelector("button[id=\"moe-dontallow_button\"]"));
+			
+			element.click();
 		}
-		else if(browsername.equalsIgnoreCase("Safari")) {
-			driver=new SafariDriver();
-			log.info("Driver is opened");
-		}
+		
 		else {
-			throw new Error("Invalid Browser Name "+browsername);
+			throw new Error("Invalid Browser Name "+browserName);
 		}
 		
 	}
@@ -51,8 +79,8 @@ public class Base_Test {
 		driver.get(url);
 	}
 	
-	//@BeforeMethod
-	public static void launchURL() {
+	@BeforeMethod
+	public static void launchURL() throws InterruptedException {
 		
 		ChromeOptions opt=new ChromeOptions();
 		
@@ -63,6 +91,12 @@ public class Base_Test {
 		driver.get("https://www.homecentre.in/");
 		
 		driver.manage().window().maximize();
+		
+		Thread.sleep(2000);
+		WebElement element=driver.findElement(By.cssSelector("button[id=\"moe-dontallow_button\"]"));
+		
+		element.click();
+
 		
 	}
 	
@@ -81,11 +115,10 @@ public class Base_Test {
 		element.click();
 	}
 	
-	@BeforeMethod
+	//@BeforeMethod
 	public static void openBrowser() throws InterruptedException {
 		ChromeOptions options=new ChromeOptions();
 		options.addArguments("--disable-notifications");
-		
 	    driver=new ChromeDriver(options);
 		driver.manage().window().maximize();
 		driver.get("https://www.homecentre.in/in/en/");
@@ -100,16 +133,16 @@ public class Base_Test {
 	public static int getListSize(By element) {
 		List<WebElement>size=driver.findElements(element);
 		int sizeCount=size.size();
-		log.info(sizeCount);
+		//log.info(sizeCount);
 		return sizeCount;
 	}
 	
 	public static int getListCountInInteger(WebElement element) {
 		String listCount=element.getText();
 		String count=listCount.substring(2,5).trim();
-		log.info(count);
+	//	log.info(count);
 		int countListNumber=Integer.parseInt(count);
-		log.info(countListNumber);
+		//log.info(countListNumber);
 		return countListNumber;
 	}
 	
