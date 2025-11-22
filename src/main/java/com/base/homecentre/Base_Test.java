@@ -33,7 +33,7 @@ public class Base_Test {
 	private static final Logger log=LogManager.getLogger(Base_Test.class);
 	
 	@Parameters("Browser Name")
-//	@BeforeMethod
+	@BeforeMethod
 	public static void openBrowser(String browserName) {
 		
 		if(browserName.equalsIgnoreCase("chrome")) {
@@ -79,7 +79,7 @@ public class Base_Test {
 		driver.get(url);
 	}
 	
-	@BeforeMethod
+//	@BeforeMethod
 	public static void launchURL() throws InterruptedException {
 		
 		ChromeOptions opt=new ChromeOptions();
