@@ -115,7 +115,7 @@ public class Base_Test {
 		element.click();
 	}
 	
-	//@BeforeMethod
+//	@BeforeMethod
 	public static void openBrowser() throws InterruptedException {
 		ChromeOptions options=new ChromeOptions();
 		options.addArguments("--disable-notifications");
