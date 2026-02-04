@@ -49,11 +49,12 @@ public class MattressePage {
 	
 	
 	public MattressePage() {
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(getDriver(),this);
 	}
 	
 	public int getListSizeOfKingmattressesProducts() {
 		int size=getListSize(kingMattresProducts);
+		//System.out.println("got "+size);
 		return size;
 	}
 	
@@ -109,13 +110,13 @@ public class MattressePage {
 	}
 	
 	public int kingMattressesProductsClick() {
-		List<WebElement>listOfProducts=driver.findElements(kingMattresProducts);	
+		List<WebElement>listOfProducts=getDriver().findElements(kingMattresProducts);	
 		int add=0;
 		for (WebElement list : listOfProducts) {
 			// WebDriverWait wai = new WebDriverWait(driver, Duration.ofSeconds(10));
 			//    WebElement produc=wai.until(ExpectedConditions.visibilityOf(list));
 			Wait_utils.waitForVisibility(list, 20);
-			    Actions action=new Actions(driver);
+			    Actions action=new Actions(getDriver());
 			    action.moveToElement(list).perform();
 			    Wait_utils.waitForClickability(list, 10);
 			    list.click();

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,7 +12,7 @@ import com.base.homecentre.Base_Test;
 
 public class case_only extends Base_Test {
 
-	//static RemoteWebDriver driver;
+	public static RemoteWebDriver driver;
 	//@BeforeMethod
 	public static void openBrowser() throws InterruptedException {
 		ChromeOptions options=new ChromeOptions();
