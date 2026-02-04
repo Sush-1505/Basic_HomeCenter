@@ -64,7 +64,7 @@ private static final Logger log=LogManager.getLogger(BedroomKingMatressesTestcas
 		MattressePage mattres=new MattressePage();
 		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
 		mattres.kingMatrres.click();
-		Assert.assertTrue(driver.getCurrentUrl().toLowerCase().contains("/bedroom-mattresses-kingmattresses"),
+		Assert.assertTrue(getDriver().getCurrentUrl().toLowerCase().contains("/bedroom-mattresses-kingmattresses"),
                  "❌ King Mattresses page URL not correct");
         log.info("✅ Navigated to King Mattresses page successfully");
 	}
@@ -113,10 +113,10 @@ private static final Logger log=LogManager.getLogger(BedroomKingMatressesTestcas
 		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
 		mattres.kingMatrres.click();
 		//Thread.sleep(2000);
-		JavascriptExecutor js= (JavascriptExecutor)driver;
+		JavascriptExecutor js= (JavascriptExecutor)getDriver();
 	    js.executeScript("window.scrollBy(0,250);");
 	   // Thread.sleep(2000);
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 	    WebElement matt=wait.until(ExpectedConditions.visibilityOfElementLocated(mattres.firstProduc));
 	    js.executeScript("arguments[0].scrollIntoView({block:'center'});",matt);
 	    wait.until(ExpectedConditions.elementToBeClickable(matt));
@@ -131,7 +131,7 @@ private static final Logger log=LogManager.getLogger(BedroomKingMatressesTestcas
 	    log.info("Clicked product: " + productName);
 	  //  String title=driver.getTitle();
 	    //log.info(title);
-	    Assert.assertTrue(driver.getTitle().contains("Buy King Size"), "❌ King Mattesses page product details is incorrect");
+	    Assert.assertTrue(getDriver().getTitle().contains("Buy King Size"), "❌ King Mattesses page product details is incorrect");
 	    log.info("✅ Navigated to King Mattresses product page successfully");
 	        
 	}
@@ -151,14 +151,14 @@ private static final Logger log=LogManager.getLogger(BedroomKingMatressesTestcas
 			JavascriptExecutor js= (JavascriptExecutor)driver;
 		    js.executeScript("window.scrollBy(0,250);");
 		    
-		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 		    WebElement product=wait.until(ExpectedConditions.visibilityOfElementLocated(mattres.firstProduc));
-		    Actions action = new Actions(driver);
+		    Actions action = new Actions(getDriver());
 		    action.moveToElement(product).perform();
 		    Wait_utils.waitForClickability(mattres.addToBasketButton, 20);
 			mattres.addToBasketButton.click();
 			
-			driver.navigate().refresh();
+			getDriver().navigate().refresh();
 			Wait_utils.waitForPresence(mattres.bassketIcon,40);
 				
 			//log.info(mattres.basketIcon.isDisplayed());
@@ -184,7 +184,7 @@ private static final Logger log=LogManager.getLogger(BedroomKingMatressesTestcas
 		    Thread.sleep(2000);
 		   // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		    //WebElement product=wait.until(ExpectedConditions.visibilityOfElementLocated(mattres.firstProduc));
-		    Actions action = new Actions(driver);
+		    Actions action = new Actions(getDriver());
 		   // action.moveToElement(product).perform();
 		   // Thread.sleep(2000);
 		   // wait_utils.waitForClickability(mattres.addToBasketButton, 20);
@@ -194,12 +194,12 @@ private static final Logger log=LogManager.getLogger(BedroomKingMatressesTestcas
 			//mattres.cartIcon.click();
 			
 		//	By sushil=By.cssSelector("div[id=\"plp-list\"]>div>div");
-			List<WebElement>listOfProducts=driver.findElements(mattres.kingMattresProducts);
+			List<WebElement>listOfProducts=getDriver().findElements(mattres.kingMattresProducts);
 			
 			
 			int add=0;
 			for (WebElement list : listOfProducts) {
-				 WebDriverWait wai = new WebDriverWait(driver, Duration.ofSeconds(10));
+				 WebDriverWait wai = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 				    WebElement produc=wai.until(ExpectedConditions.visibilityOf(list));
 				    
 				    action.moveToElement(produc).perform();
@@ -227,9 +227,9 @@ private static final Logger log=LogManager.getLogger(BedroomKingMatressesTestcas
 		JavascriptExecutor js= (JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,250);");
 		//Thread.sleep(2000);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 		WebElement product=wait.until(ExpectedConditions.visibilityOfElementLocated(mattres.firstProduc));
-		Actions action = new Actions(driver);
+		Actions action = new Actions(getDriver());
 	    action.moveToElement(product).perform();
 		//Thread.sleep(2000);
 	    Wait_utils.waitForClickability(mattres.addToBasketButton, 20);
@@ -263,9 +263,9 @@ private static final Logger log=LogManager.getLogger(BedroomKingMatressesTestcas
 		JavascriptExecutor js= (JavascriptExecutor)driver;
 		js.executeScript("window.scrollBy(0,250);");
 		//Thread.sleep(2000);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 		WebElement product=wait.until(ExpectedConditions.visibilityOfElementLocated(mattres.firstProduc));
-		Actions action = new Actions(driver);
+		Actions action = new Actions(getDriver());
 	    action.moveToElement(product).perform();
 		//Thread.sleep(2000);
 	    Wait_utils.waitForClickability(mattres.addToBasketButton, 20);
@@ -284,7 +284,7 @@ private static final Logger log=LogManager.getLogger(BedroomKingMatressesTestcas
     	Wait_utils.waitForClickability(cart.checkoutNow, 20);	
     	cart.checkoutNow.click();
     	
-    	WebElement continues=driver.findElement(By.cssSelector("button[id=\"signup-form-submit\"]>span"));
+    	WebElement continues=getDriver().findElement(By.cssSelector("button[id=\"signup-form-submit\"]>span"));
     
     	
     	Assert.assertFalse(continues.isDisplayed(),"Continue Button Is Not Visible");
