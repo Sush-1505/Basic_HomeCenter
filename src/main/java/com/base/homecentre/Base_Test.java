@@ -148,9 +148,9 @@ public class Base_Test {
 	public static void openBrowser() throws InterruptedException {
 		ChromeOptions options=new ChromeOptions();
 		options.addArguments("--disable-notifications");
-	    driver=new ChromeDriver(options);
-		driver.manage().window().maximize();
-		driver.get("https://www.homecentre.in/in/en/");
+		driver.set(new ChromeDriver(options));
+		getDriver().manage().window().maximize();
+		getDriver().get("https://www.homecentre.in/in/en/");
 		Thread.sleep(2000);
 	}
 	//@BeforeMethod
