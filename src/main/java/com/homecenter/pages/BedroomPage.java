@@ -29,7 +29,7 @@ public class BedroomPage {
 	
 	
 	public BedroomPage() {
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(getDriver(),this);
 	}
 	
 	public void hoverOnBedroom() {

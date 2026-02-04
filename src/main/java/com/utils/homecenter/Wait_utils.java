@@ -10,24 +10,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Wait_utils {
 
 	public static void waitForVisibility(WebElement element, int timeoutInSeconds) {
-        new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds))
+        new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds))
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
     public static void waitForClickability(WebElement element, int timeoutInSeconds) {
-        new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds))
+        new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds))
                 .until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public static void waitForPresence(By element, int timeoutInSeconds) {
     	
     	
-        new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds))
+        new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds))
                 .until(ExpectedConditions.presenceOfElementLocated((element)));
     }
     
     public static void visibilityOfElementLocated(By element,int timeoutInSeconds) {
-    	new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds))
+    	new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds))
     	.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
     

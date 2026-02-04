@@ -33,7 +33,7 @@ public class KitchenPage {
 	public WebElement cokware;
 	
 	public KitchenPage() {
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(getDriver(),this);
 	}
 	
 	public void hoverOnKitchen() {

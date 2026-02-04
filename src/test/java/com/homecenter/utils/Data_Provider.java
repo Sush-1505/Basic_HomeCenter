@@ -30,10 +30,13 @@ public class Data_Provider {
 			XSSFRow row=sheet.getRow(i);
 			XSSFCell cell=row.getCell(1);
 			
+			
 			switch(cell.getCellType()) {
 			case STRING:
-				String value=cell.getStringCellValue();
-				data[i-1][0]=value;
+				String value=cell.getStringCellValue();        
+				data[i-1][0]=value;   
+				//data[0][0]
+				
 				break;
 				
 				case NUMERIC:
@@ -52,7 +55,7 @@ public class Data_Provider {
 	}
 	
 	public int lastRowNumber() throws IOException {
-String path="D:\\Pincodes File.xlsx";
+        String path="D:\\Pincodes File.xlsx";
 		
 		
 		FileInputStream fis = new FileInputStream(path);
