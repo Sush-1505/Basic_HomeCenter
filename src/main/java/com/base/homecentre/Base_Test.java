@@ -27,7 +27,7 @@ import org.testng.annotations.Parameters;
 import com.utils.homecenter.Wait_utils;
 
 
-public class Base_Test {
+public class Base_Test {               
 
 	public static RemoteWebDriver driver;	
 	private static final Logger log=LogManager.getLogger(Base_Test.class);
