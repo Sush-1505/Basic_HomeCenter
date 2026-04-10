@@ -27,7 +27,7 @@ import org.testng.annotations.Parameters;
 import com.utils.homecenter.Wait_utils;
 
 
-public class Base_Test {
+public class Base_Test {               
 
 //	public static RemoteWebDriver driver;	
 	public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
