@@ -17,8 +17,19 @@ public class BasketCartPage {
 	@FindBy(css="button[id=\"signup-form-submit\"]>span")
 	public WebElement continueButton;
 	
+	@FindBy(css="input[id=\"pincode-field\"]")
+	public WebElement pincode;
+	
+	@FindBy(xpath="//span[text()='Check']")
+	public WebElement pincodeCheck;
+	
+	public By massage=By.cssSelector("div[id=\"root-desk-top-right-inner\"]>div>div>p+p");
+	
+	@FindBy(css="div[id=\"root-desk-top-right-inner\"]>div>div>p+p")
+	public WebElement masage;
+	
 	public BasketCartPage() {
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(getDriver(),this);
 	}
 
 

@@ -25,7 +25,7 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 	public void verifyBedroomModuleVisible() {
 
 		BedroomPage bed = new BedroomPage();
-		Assert.assertFalse(bed.bedroomVisible(), "Bedroom Menu is not visible on Homepage");
+		Assert.assertTrue(bed.bedroomVisible(), "Bedroom Menu is not visible on Homepage");
 		log.info("✅ Bedroom Menu is Visible");
 	}
 
@@ -55,7 +55,7 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		MattressePage mattres = new MattressePage();
 		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
 		mattres.kingMatrres.click();
-		Assert.assertTrue(driver.getCurrentUrl().toLowerCase().contains("/bedroom-mattresses-kingmattresses"),
+		Assert.assertTrue(getDriver().getCurrentUrl().toLowerCase().contains("/bedroom-mattresses-kingmattresses"),
 				"❌ King Mattresses page URL not correct");
 		log.info("✅ Navigated to King Mattresses page successfully");
 	}
@@ -101,12 +101,12 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
 		mattres.kingMatrres.click();
 
-		Actions act = new Actions(driver);
+		Actions act = new Actions(getDriver());
 		act.scrollToElement(mattres.firstProduct);
 		Wait_utils.waitForClickability(mattres.firstProduct, 20);
 		String productName = mattres.firstProduct.getText();
 		log.info("Clicked product: " + productName);
-		Assert.assertTrue(driver.getTitle().contains("Buy King Size"),
+		Assert.assertTrue(getDriver().getTitle().contains("Buy King Size"),
 				"❌ King Mattesses page product details is incorrect");
 		log.info("✅ Navigated to King Mattresses product page successfully");
 
@@ -124,7 +124,7 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 
 		int initialCount = mattres.addToBasketInitialCount();
 
-		Actions action = new Actions(driver);
+		Actions action = new Actions(getDriver());
 
 		action.scrollToElement(mattres.firstProduct);
 
@@ -133,7 +133,7 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		Wait_utils.waitForClickability(mattres.addToBasketButton, 20);
 		mattres.addToBasketButton.click();
 
-		driver.navigate().refresh();
+		getDriver().navigate().refresh();
 
 		Wait_utils.visibilityOfElementLocated(mattres.bassketIcon, 40);
 
@@ -168,7 +168,7 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		MattressePage mattres = new MattressePage();
 		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
 		mattres.kingMatrres.click();
-		Actions action = new Actions(driver);
+		Actions action = new Actions(getDriver());
 
 		Wait_utils.visibilityOfElementLocated(mattres.firstProduc, 20);
 		action.moveToElement(mattres.firstProduct).perform();
@@ -178,7 +178,7 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		Wait_utils.waitForClickability(mattres.cartIcon, 20);
 		mattres.cartIcon.click();
 
-		driver.navigate().refresh();
+		getDriver().navigate().refresh();
 		BasketCartPage cart = new BasketCartPage();
 
 		action.scrollToElement(cart.checkoutNow).perform();
@@ -197,7 +197,7 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		MattressePage mattres = new MattressePage();
 		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
 		mattres.kingMatrres.click();
-		Actions action = new Actions(driver);
+		Actions action = new Actions(getDriver());
 
 		Wait_utils.visibilityOfElementLocated(mattres.firstProduc, 20);
 		action.moveToElement(mattres.firstProduct).perform();
@@ -207,7 +207,7 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		Wait_utils.waitForClickability(mattres.cartIcon, 20);
 		mattres.cartIcon.click();
 
-		driver.navigate().refresh();
+		getDriver().navigate().refresh();
 		BasketCartPage cart = new BasketCartPage();
 
 		action.scrollToElement(cart.checkoutNow).perform();
@@ -227,7 +227,7 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		MattressePage mattres = new MattressePage();
 		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
 		mattres.kingMatrres.click();
-		Actions action = new Actions(driver);
+		Actions action = new Actions(getDriver());
 
 		Wait_utils.visibilityOfElementLocated(mattres.firstProduc, 20);
 		action.moveToElement(mattres.firstProduct).perform();
@@ -239,18 +239,18 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		
 		Thread.sleep(2000);
 		
-		WebElement pincode=driver.findElement(By.cssSelector("input[id=\"pincode-field\"]"));
+		WebElement pincode=getDriver().findElement(By.cssSelector("input[id=\"pincode-field\"]"));
 		pincode.sendKeys("445001");
 		
 		Thread.sleep(2000);
 		
-		WebElement check=driver.findElement(By.xpath("//span[text()='Check']"));		
+		WebElement check=getDriver().findElement(By.xpath("//span[text()='Check']"));		
 		Thread.sleep(2000);
 		check.click();
 		
 		Thread.sleep(2000);
 		
-		WebElement msg=driver.findElement(By.cssSelector("div[id=\"root-desk-top-right-inner\"]>div>div>p+p"));
+		WebElement msg=getDriver().findElement(By.cssSelector("div[id=\"root-desk-top-right-inner\"]>div>div>p+p"));
 		System.out.println(msg.getText());
 		
 		
@@ -258,20 +258,20 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		
 		Thread.sleep(2000);
 		
-		WebElement change=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div:nth-child(3)"));
+		WebElement change=getDriver().findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div:nth-child(3)"));
 		Wait_utils.waitForVisibility(change, 10);
 		
 		change.click();
 		
 		Thread.sleep(1000);
 		
-		WebElement cross=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div+div>span"));
+		WebElement cross=getDriver().findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div+div>span"));
 		cross.click();
 		
-		driver.navigate().refresh();
+		getDriver().navigate().refresh();
 		
 		Thread.sleep(2000);
-		WebElement pinnn=driver.findElement(By.cssSelector("input[id=\"pincode-field\"]"));
+		WebElement pinnn=getDriver().findElement(By.cssSelector("input[id=\"pincode-field\"]"));
 		try {
 		Wait_utils.waitForVisibility(pinnn, 10);
 		pinnn.sendKeys("400017");
@@ -298,15 +298,14 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 			
 	}
 	
-//	@Test(dataProvider = "Pincodes Data" , dataProviderClass = Data_Provider.class)
+	@Test(priority = 12, dataProvider = "Pincodes Data" , dataProviderClass = Data_Provider.class)
 	public void verifyPincode(int pincod) throws InterruptedException, IOException {
 		BedroomPage bed = new BedroomPage();
 		bed.hoverOnBedroom();
 		MattressePage mattres = new MattressePage();
 		Wait_utils.waitForClickability(mattres.kingMatrres, 20);
 		mattres.kingMatrres.click();
-		Actions action = new Actions(driver);
-
+		Actions action = new Actions(getDriver());
 		Wait_utils.visibilityOfElementLocated(mattres.firstProduc, 20);
 		action.moveToElement(mattres.firstProduct).perform();
 		Wait_utils.waitForClickability(mattres.addToBasketButton, 20);
@@ -315,62 +314,63 @@ public class BedroomKingMatressesTestcases extends Base_Test {
 		Wait_utils.waitForClickability(mattres.cartIcon, 20);
 		mattres.cartIcon.click();
 		
+		Thread.sleep(1000);
+		
+		BasketCartPage cart=new BasketCartPage();
+		
+		cart.pincode.sendKeys(String.valueOf(pincod));
+		
+		Thread.sleep(1000);
+		
+		Thread.sleep(1000);
+		cart.pincodeCheck.click();
+		
+	//	driver.navigate().refresh();
 		Thread.sleep(2000);
-		
-		WebElement pincode=driver.findElement(By.cssSelector("input[id=\"pincode-field\"]"));
-		pincode.sendKeys("445001");
-		
-		Thread.sleep(2000);
-		
-		WebElement check=driver.findElement(By.xpath("//span[text()='Check']"));		
-		Thread.sleep(2000);
-		
-		WebElement msg=driver.findElement(By.cssSelector("div[id=\"root-desk-top-right-inner\"]>div>div>p+p"));
-		System.out.println(msg.getText());
+		Wait_utils.waitForPresence(cart.massage, pincod);
+		log.info(cart.masage.getText());
 		
 		Thread.sleep(2000);
+	
+//		Data_Provider d=new Data_Provider();
 
-		
-		Data_Provider d=new Data_Provider();
-		
-		for(int i=1;i<=d.lastRowNumber();i++) {
-			
-//			String pp=pincod.toString();
+//		for(int i=1;i<=d.lastRowNumber();i++) {
 //			
-//			 int a=Integer.parseInt(pp);
-			Thread.sleep(2000);
-			
-			WebElement change=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div:nth-child(3)"));
-			Wait_utils.waitForVisibility(change, 10);
-			
-			change.click();
-			
-			Thread.sleep(1000);
-			
-			WebElement cross=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div+div>span"));
-			cross.click();
-			
-			Thread.sleep(2000);
-			
-			pincode.sendKeys(String.valueOf(pincod));
-					
-			Thread.sleep(2000);
-			
-			Wait_utils.waitForVisibility(check, 10);
-			
-			check.click();
-			
-			//driver.navigate().refresh();
-			
-			Thread.sleep(2000);
-			
-			Wait_utils.waitForVisibility(msg, 10);
-			
-			System.out.println(msg.getText());
-			
-			Thread.sleep(2000);
-
-		}
+//			Thread.sleep(2000);
+//			
+//			WebElement change=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div:nth-child(3)"));
+//			Wait_utils.waitForClickability(change, 10);
+//			
+//			change.click();
+//			
+//			Thread.sleep(2000);
+//			
+//			WebElement cross=driver.findElement(By.cssSelector("div[id=\"pinCodeContainer\"]>div>div+div>span"));
+//			cross.click();
+//			
+//			Thread.sleep(2000);
+//			
+//			Wait_utils.waitForVisibility(pincode, 10);
+//			
+//			pincode.sendKeys(String.valueOf(pincod));
+//					
+//			Thread.sleep(2000);
+//			
+//			Wait_utils.waitForClickability(check, 10);
+//			
+//			check.click();
+//			
+//			//driver.navigate().refresh();
+//			
+//			Thread.sleep(2000);
+//			
+//			Wait_utils.waitForVisibility(msg, 10);
+//			
+//			System.out.println(msg.getText());
+//			
+//			Thread.sleep(2000);
+//
+//		}
 		
 		
 //		WebElement pincode=driver.findElement(By.cssSelector("input[id=\"pincode-field\"]"));

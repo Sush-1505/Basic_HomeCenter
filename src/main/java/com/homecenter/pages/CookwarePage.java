@@ -47,7 +47,7 @@ public class CookwarePage {
 	public By bassketIcon=By.cssSelector("button[aria-label^='cart-icon']");
 	
 	public CookwarePage() {
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(getDriver(),this);
 	}
 	
 	public int getListSizeOfCookwareSetProducts() {
@@ -107,13 +107,13 @@ public class CookwarePage {
 	}
 	
 	public int cookwareSetProductsClick() {
-		List<WebElement>listOfProducts=driver.findElements(cookwareSetProducts);	
+		List<WebElement>listOfProducts=getDriver().findElements(cookwareSetProducts);	
 		int add=0;
 		for (WebElement list : listOfProducts) {
 		/// WebDriverWait wai = new WebDriverWait(driver, Duration.ofSeconds(10));
 			//    WebElement produc=wai.until(ExpectedConditions.visibilityOf(list));
 			Wait_utils.waitForVisibility(list, 20);
-			    Actions action=new Actions(driver);
+			    Actions action=new Actions(getDriver());
 			    action.moveToElement(list).perform();
 			    Wait_utils.waitForClickability(list, 10);
 			    list.click();

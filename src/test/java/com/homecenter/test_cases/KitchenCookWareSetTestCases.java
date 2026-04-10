@@ -51,7 +51,7 @@ public class KitchenCookWareSetTestCases extends Base_Test{
 		CookwarePage cookware=new CookwarePage();
 		Wait_utils.waitForClickability(cookware.cookwareSet, 20);
 		cookware.cookwareSet.click();
-		Assert.assertTrue(driver.getCurrentUrl().toLowerCase().contains("/kitchen-cooking-cookwaresets"),
+		Assert.assertTrue(getDriver().getCurrentUrl().toLowerCase().contains("/kitchen-cooking-cookwaresets"),
 				"❌ Cookware Set page URL not correct");
 		log.info("✅ Navigated to Cookware Set page successfully");
 	}
@@ -102,12 +102,12 @@ public class KitchenCookWareSetTestCases extends Base_Test{
 		Wait_utils.waitForClickability(cookware.cookwareSet, 20);
 		cookware.cookwareSet.click();
 
-		Actions act = new Actions(driver);
+		Actions act = new Actions(getDriver());
 		act.scrollToElement(cookware.firstProduct);
 		Wait_utils.waitForClickability(cookware.firstProduct, 20);
 		String productName = cookware.firstProduct.getText();
 		log.info("Clicked product: " + productName);
-		Assert.assertTrue(driver.getTitle().contains("Buy Gravis Steller 4Pcs"),
+		Assert.assertTrue(getDriver().getTitle().contains("Buy Gravis Steller 4Pcs"),
 				"❌ Cookware Set page product details is incorrect");
 		log.info("✅ Navigated to Cookware Set product page successfully");
 
@@ -127,7 +127,7 @@ public class KitchenCookWareSetTestCases extends Base_Test{
 
 		int initialCount = cookware.addToBasketInitialCount();
 
-		Actions action = new Actions(driver);
+		Actions action = new Actions(getDriver());
 
 		action.scrollToElement(cookware.firstProduct);
 
@@ -136,7 +136,7 @@ public class KitchenCookWareSetTestCases extends Base_Test{
 		Wait_utils.waitForClickability(cookware.addToBasketButton, 20);
 		cookware.addToBasketButton.click();
 
-		driver.navigate().refresh();
+		getDriver().navigate().refresh();
 
 		Wait_utils.visibilityOfElementLocated(cookware.bassketIcon, 40);
 
@@ -176,7 +176,7 @@ public class KitchenCookWareSetTestCases extends Base_Test{
 
 		Wait_utils.waitForClickability(cookware.cookwareSet, 20);
 		cookware.cookwareSet.click();
-		Actions action = new Actions(driver);
+		Actions action = new Actions(getDriver());
 
 		Wait_utils.visibilityOfElementLocated(cookware.firstProduc, 20);
 		action.moveToElement(cookware.firstProduct).perform();
@@ -186,7 +186,7 @@ public class KitchenCookWareSetTestCases extends Base_Test{
 		Wait_utils.waitForClickability(cookware.cartIcon, 20);
 		cookware.cartIcon.click();
 
-		driver.navigate().refresh();
+		getDriver().navigate().refresh();
 		BasketCartPage cart = new BasketCartPage();
 
 		action.scrollToElement(cart.checkoutNow).perform();
@@ -207,7 +207,7 @@ public class KitchenCookWareSetTestCases extends Base_Test{
 
 		Wait_utils.waitForClickability(cookware.cookwareSet, 20);
 		cookware.cookwareSet.click();
-		Actions action = new Actions(driver);
+		Actions action = new Actions(getDriver());
 
 		Wait_utils.visibilityOfElementLocated(cookware.firstProduc, 20);
 		action.moveToElement(cookware.firstProduct).perform();
@@ -217,7 +217,7 @@ public class KitchenCookWareSetTestCases extends Base_Test{
 		Wait_utils.waitForClickability(cookware.cartIcon, 20);
 		cookware.cartIcon.click();
 
-		driver.navigate().refresh();
+		getDriver().navigate().refresh();
 		BasketCartPage cart = new BasketCartPage();
 
 		action.scrollToElement(cart.checkoutNow).perform();
