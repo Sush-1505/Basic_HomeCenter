@@ -3,14 +3,23 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.homecenter.test_cases.BedroomTestcases">
+      <class name="com.homecenter.test_cases.BedroomKingMatressesTestcases">
         <methods>
-          <include name="verifyBedroomSubCatogories"/>
           <include name="openBrowser"/>
+          <include name="verifyCheckoutButtonClickability"/>
           <include name="teraDown"/>
+          <include name="verifyBedroomSubCatogories"/>
+          <include name="verifyCheckOutNowButtonVisibility"/>
+          <include name="verifyAddToBasket"/>
+          <include name="verifyProductDetailsOnPruductPage"/>
+          <include name="verifyKingMattresseProducts"/>
+          <include name="verifyMultipleProductsClickabilityForPage"/>
           <include name="kingMattressesProduct"/>
+          <include name="verifyBedroomModuleVisible"/>
+          <include name="verifyMattressesMenuList"/>
+          <include name="kingMattressesNavigation"/>
         </methods>
-      </class> <!-- com.homecenter.test_cases.BedroomTestcases -->
+      </class> <!-- com.homecenter.test_cases.BedroomKingMatressesTestcases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
