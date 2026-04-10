@@ -22,7 +22,8 @@ public class Wait_utils {
     public static void waitForPresence(By element, int timeoutInSeconds) {
     	
     	
-        new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds))
+        new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
+    	 new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds))
                 .until(ExpectedConditions.presenceOfElementLocated((element)));
     }
     
